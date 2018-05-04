@@ -1,0 +1,1 @@
+/Applications/cheerp/bin/clang++ -target cheerp -cheerp-mode=wasm -cheerp-wasm-loader=pong.js -O2 -o pong.wasm pong.cpp

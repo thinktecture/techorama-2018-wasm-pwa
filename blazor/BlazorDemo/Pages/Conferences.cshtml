@@ -1,0 +1,42 @@
+﻿@using System
+@using System.Linq
+@inherits BlazorDemo.Pages.ConferenceComponent
+
+<h1>Conferences</h1>
+
+@functions
+{
+    private string highlightBackground { get; set; } = "lightblue";
+}
+
+@if (Conferences == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Favorite</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var conf in Conferences)
+        {
+            <tr style="background-color:@(conf.Favorite ? highlightBackground : "white") ">
+                <td>@conf.Date.ToShortDateString()</td>
+                <td><a href="@conf.Link">@conf.Name</a></td>
+                <td>@conf.Location</td>
+                <td><input type="checkbox" bind="@conf.Favorite" /></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+    <label for="color">Favorite color:</label>
+    <input id="color" type="text" bind="@highlightBackground" />
+}
